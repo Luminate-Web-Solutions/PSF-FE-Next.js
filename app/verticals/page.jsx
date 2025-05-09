@@ -49,7 +49,7 @@ const Verticals = () => {
           {[
             {
               title: "Personal Wellbeing",
-              desc: "This comprehensive program covers different dimensions of wellness that include weekly sports activities, family programs (social, emotional wellness), financial literacy, etc.",
+              desc: "This comprehensive program covers different dimensions of wellness that include weekly activities.",
               link: '/personalWellbeing',
             },
             {

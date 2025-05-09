@@ -114,13 +114,13 @@ const Header = () => {
             <div className={`mobile-dropdown-content ${aboutOpen ? 'open' : ''}`} onClick={handleLinkClick}>
               <Link href="/about" className="mobile-dropdown-item">Mission & Vision</Link>
               <Link href="/organizationalEthics" className="mobile-dropdown-item">Organizational Ethics</Link>
-              <Link href="/coreteam" className="mobile-dropdown-item">Our Team</Link>
+              <Link href="/coreTeam" className="mobile-dropdown-item">Our Team</Link>
               <Link href="/president" className="mobile-dropdown-item">Message from the President</Link>
               <Link href="/newsletter" className="mobile-dropdown-item">News Letter</Link>
             </div>
           </div>
 
-          <Link to="/membership" onClick={closeAllMenus} className="mobile-link">Membership</Link>
+          <Link href="/membership" onClick={closeAllMenus} className="mobile-link">Membership</Link>
 
           {/* Verticals Mobile Dropdown */}
           <div className="mobile-dropdown">
@@ -152,11 +152,11 @@ const Header = () => {
             </div>
           </div>
           <Link href="/jobs" onClick={closeAllMenus} className="mobile-link">Jobs</Link>
-          <a href="https://pages.razorpay.com/psfhyd" onClick={closeAllMenus} className="mobile-link">Donate</a>
+          <a href="#" onClick={closeAllMenus} className="mobile-link">Donate</a>
           <Link href="/contact" onClick={closeAllMenus} className="mobile-link">Contact Us</Link>
 
           <Link href="/register" onClick={closeAllMenus} className="mobile-register-button">
-            Membership
+            Register
           </Link>
         </div>
       )}
