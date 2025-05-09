@@ -2,6 +2,11 @@ import React from 'react'
 import VerticalCard from '../components/VerticalCard';
 import PhotoGallery from '../components/PhotoGallery';
 
+export const metadata = {
+  title: 'PSF - Verticals',
+  description: '...',
+}
+
 
 const Verticals = () => {
 

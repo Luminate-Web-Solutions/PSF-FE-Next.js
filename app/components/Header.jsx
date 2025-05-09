@@ -83,7 +83,9 @@ const Header = () => {
 
 
             <div className="dropdown-content" onClick={handleLinkClick}>
-              <a href='https://professionalssummit.com/' className="dropdown-item">Professionals Summit</a>
+              <a href='https://professionalssummit.com/'
+                target="_blank"
+                rel="noopener noreferrer" className="dropdown-item">Professionals Summit</a>
               <Link href="/agm" className="dropdown-item">Annual General Meeting(AGM)</Link>
             </div>
           </div>
@@ -142,7 +144,9 @@ const Header = () => {
               Events <ChevronDown size={18} className={`dropdown-icon ${EventsOpen ? 'rotate' : ''}`} />
             </Link>
             <div className={`mobile-dropdown-content ${EventsOpen ? 'open' : ''}`} onClick={handleLinkClick}>
-              <Link href="/professionalsSummit" className="mobile-dropdown-item">Professionals Summit</Link>
+              <Link href='https://professionalssummit.com/'
+                target="_blank"
+                rel="noopener noreferrer" className="mobile-dropdown-item">Professionals Summit</Link>
               <Link href="/agm" className="mobile-dropdown-item">Annual General Meeting(AGM)</Link>
 
             </div>

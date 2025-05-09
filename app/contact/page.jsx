@@ -1,5 +1,10 @@
 import React from 'react';
 
+export const metadata = {
+  title: 'PSF - Contact',
+  description: '...',
+}
+
 const Contact = () => {
   return (
     <div className="max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 py-12 bg-[#E0EAF5] min-h-screen flex flex-col justify-center">
@@ -27,9 +32,15 @@ const Contact = () => {
             <h2 className="text-2xl font-semibold border-b-4 border-[#2E77AE] inline-block pb-1 mb-3">
               Contact Info
             </h2>
-            <p><strong>📧 Email:</strong> <span className="text-[#2E77AE]">contact@psf-india.org</span></p>
-            <p><strong>📞 Phone:</strong> <span className="text-[#2E77AE]">+91-9988773493</span></p>
-            <p><strong>📍 Location:</strong> <span className="text-[#2E77AE]">12-2-458/16/B, Hills Colony, Mehdipatnam, Hyderabad, Telangana, 500028</span></p>
+            <p><strong>📧 Email:</strong> 
+            <p><span className="text-[#2E77AE]">contact@psf-india.org</span></p>
+            </p>
+            <p><strong>📞 Phone:</strong> 
+            <p><span className="text-[#2E77AE]">+91-9988773493</span></p> 
+            </p>
+            <p><strong>📍 Location:</strong> 
+            <p><span className="text-[#2E77AE]">12-2-458/16/B, Hills Colony, Mehdipatnam, Hyderabad, Telangana, 500028</span></p>
+            </p>
           </div>
 
           {/* Contact Form */}

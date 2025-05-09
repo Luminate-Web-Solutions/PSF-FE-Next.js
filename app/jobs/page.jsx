@@ -1,6 +1,11 @@
 import React from 'react';
 import { Construction } from 'lucide-react'; 
 
+export const metadata = {
+  title: 'PSF - Jobs',
+  description: '...',
+}
+
 const Jobs = () => {
   return (
     <>

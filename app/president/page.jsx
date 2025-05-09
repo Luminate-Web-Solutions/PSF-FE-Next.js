@@ -1,5 +1,11 @@
 import React from 'react';
 
+export const metadata = {
+  title: 'PSF - President',
+  description: '...',
+}
+
+
 const President = () => {
   return (
     <div>

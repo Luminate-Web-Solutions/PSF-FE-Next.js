@@ -1,5 +1,10 @@
 import React from 'react';
 
+export const metadata = {
+  title: 'PSF - Professionals Summit',
+  description: '...',
+}
+
 const ProfessionalsSummit = () => {
   return (
     <div className="w-full">

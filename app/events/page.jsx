@@ -1,6 +1,11 @@
 import React from 'react';
 import EventCard from '../components/EventCard';
 
+export const metadata = {
+  title: 'PSF - Events',
+  description: '...',
+}
+
 const Events = () => {
   return (
     <div className="px-6 py-10 bg-[#E0EAF5] min-h-screen space-y-12 pr-15 pl-15">

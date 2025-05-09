@@ -1,5 +1,10 @@
 import React from 'react';
 
+export const metadata = {
+  title: 'PSF - Personal Wellbeing',
+  description: '...',
+}
+
 const ProfessionalWellBeing = () => {
   return (
     <>

@@ -1,5 +1,10 @@
 import React from 'react'
 
+export const metadata = {
+  title: 'PSF - Core Team',
+  description: '...',
+}
+
 const CoreTeam = () => {
     return (
         <>

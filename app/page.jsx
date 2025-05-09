@@ -6,6 +6,10 @@ import Link from 'next/link';
 import ImageCarousel from './components/ImageCarousel';
 import VerticalCard from './components/VerticalCard';
 
+export const metadata = {
+  title: 'PSF - Home',
+  description: '...',
+}
 
 const App = () => {
   return (

@@ -1,6 +1,11 @@
 import React from 'react';
 import NewsletterCard from '../components/NewsletterCards';
 
+export const metadata = {
+  title: 'PSF - Newsletter',
+  description: '...',
+}
+
 const Newsletter = () => {
     return (
         <>

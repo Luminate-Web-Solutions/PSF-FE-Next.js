@@ -2,6 +2,11 @@ import React from 'react';
 import { ArrowUpNarrowWide, Users, ContactRound, Handshake } from 'lucide-react';
 import Link  from 'next/link';
 
+export const metadata = {
+  title: 'PSF - Continuous Professional Development Program',
+  description: '...',
+}
+
 const Cpdp = () => {
   return (
     <div className="text-gray-800">

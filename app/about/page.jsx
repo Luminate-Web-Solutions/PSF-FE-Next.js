@@ -2,6 +2,11 @@ import React from 'react';
 import { Rocket, Gem, Telescope } from 'lucide-react';
 import Link  from 'next/link';
 
+export const metadata = {
+  title: 'PSF - About',
+  description: '...',
+}
+
 const About = () => {
   return (
     <>

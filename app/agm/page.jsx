@@ -1,6 +1,11 @@
 import React from 'react';
 import { Construction } from 'lucide-react';
 
+export const metadata = {
+  title: 'PSF - AGM',
+  description: '...',
+}
+
 const Agm = () => {
   return (
     <>
