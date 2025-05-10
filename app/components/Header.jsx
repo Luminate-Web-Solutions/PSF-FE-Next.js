@@ -25,7 +25,7 @@ const Header = () => {
     <div className="header">
       <div className="header-container">
         <Link href="/" onClick={closeAllMenus}>
-          <img src='/psf_logo.png' alt="PSFLOGO" className="logo" />
+          <img src='/psf_logo 1.png' alt="PSFLOGO" className="logo" />
         </Link>
 
         {/* Hamburger for Mobile */}
@@ -91,7 +91,7 @@ const Header = () => {
           </div>
 
           <Link href="/jobs" className="nav-link">Jobs</Link>
-          <a href="#" className="nav-link">Donate</a>
+          <a href="/donate" className="nav-link">Donate</a>
 
           <Link href="/contact" className="nav-link">Contact</Link>
 
@@ -152,7 +152,7 @@ const Header = () => {
             </div>
           </div>
           <Link href="/jobs" onClick={closeAllMenus} className="mobile-link">Jobs</Link>
-          <a href="#" onClick={closeAllMenus} className="mobile-link">Donate</a>
+          <a href="/donate" onClick={closeAllMenus} className="mobile-link">Donate</a>
           <Link href="/contact" onClick={closeAllMenus} className="mobile-link">Contact Us</Link>
 
           <Link href="/register" onClick={closeAllMenus} className="mobile-register-button">

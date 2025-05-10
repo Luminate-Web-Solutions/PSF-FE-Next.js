@@ -23,7 +23,7 @@ const App = () => {
       <div className="mx-4 md:mx-16  mb-8">
         <div className="flex flex-col md:flex-row gap-8 md:gap-20 items-center">
           <Image
-            src="/psf_logo.png" // ✅ reference public/psf_logo.png
+            src="/psf_logo 1.png" // ✅ reference public/psf_logo.png
             alt="PSF Logo"
             width={150}
             height={50}
@@ -42,7 +42,7 @@ const App = () => {
             {
               title: "Personal Wellbeing",
               desc: "This comprehensive program covers different dimensions of wellness that include weekly activities.",
-              link: '/personalWellbeing',
+              link: '/personalWellBeing',
             },
             {
               title: "Professional Development",
