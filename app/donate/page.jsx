@@ -10,7 +10,7 @@ const donate = () => {
                 <div className="absolute inset-0 bg-[#0d2137]"></div>
                 <div className="relative z-10 text-center animate-[fadeInUp_1s_ease-out]">
                     <h1 className="text-white text-4xl md:text-6xl font-bold drop-shadow-lg">
-                        JOBS
+                        DONATE
                     </h1>
                 </div>
             </div>

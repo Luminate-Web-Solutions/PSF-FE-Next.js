@@ -50,7 +50,7 @@ const Verticals = () => {
             {
               title: "Personal Wellbeing",
               desc: "This comprehensive program covers different dimensions of wellness that include weekly activities.",
-              link: '/personalWellbeing',
+              link: '/personalWellBeing',
             },
             {
               title: "Professional Development",
@@ -60,7 +60,7 @@ const Verticals = () => {
             {
               title: "Skills Academy",
               desc: "We intend to close that gap by offering high-quality training in a variety of subjects through the PSF Skills Academy.",
-              link: '/skillAcademy',
+              link: '/skillsAcademy',
             },
             {
               title: "Job & Career Guidance",

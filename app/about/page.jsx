@@ -110,7 +110,7 @@ const About = () => {
           Meet the passionate leaders driving PSF’s mission forward — from strategic direction to on-ground impact. Learn more about our Organisation Leadership Team, Permanent Members, and Vertical Leads who form the backbone of our initiatives.
         </p>
         <div className="flex justify-center items-center">
-          <Link href="/coreteam">
+          <Link href="/coreTeam">
             <button className="bg-[#2f5d8c] text-white px-6 py-3 rounded-2xl font-semibold shadow-md hover:bg-[#234768] transition">
               EXPLORE OUR CORE TEAM
             </button>

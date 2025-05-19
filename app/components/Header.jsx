@@ -116,11 +116,12 @@ const Header = () => {
               <Link href="/organizationalEthics" className="mobile-dropdown-item">Organizational Ethics</Link>
               <Link href="/coreTeam" className="mobile-dropdown-item">Our Team</Link>
               <Link href="/president" className="mobile-dropdown-item">Message from the President</Link>
-              <Link href="/newsletter" className="mobile-dropdown-item">News Letter</Link>
             </div>
           </div>
 
           <Link href="/membership" onClick={closeAllMenus} className="mobile-link">Membership</Link>
+
+          <Link href="/newsletter" onClick={closeAllMenus} className="mobile-link">News Letter</Link>
 
           {/* Verticals Mobile Dropdown */}
           <div className="mobile-dropdown">

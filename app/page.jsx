@@ -1,15 +1,21 @@
+'use client';
+
 import React from 'react';
 import Image from 'next/image';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Autoplay } from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
 import EventCard from './components/EventCard';
 import TestimonialCarousel from './components/TestimonialCarousel';
 import Link from 'next/link';
 import ImageCarousel from './components/ImageCarousel';
 import VerticalCard from './components/VerticalCard';
 
-export const metadata = {
-  title: 'PSF - Home',
-  description: '...',
-}
+// export const metadata = {
+//   title: 'PSF - Home',
+//   description: '...',
+// }
 
 const App = () => {
   return (
@@ -52,7 +58,7 @@ const App = () => {
             {
               title: "Skills Academy",
               desc: "We intend to close that gap by offering high-quality training in a variety of subjects through the PSF Skills Academy.",
-              link: '/skillAcademy',
+              link: '/skillsAcademy',
             },
             {
               title: "Job & Career Guidance",
@@ -72,35 +78,49 @@ const App = () => {
 
       {/* Upcoming Events */}
       <div className="bg-[#EOEAF5] py-12 px-4 md:px-20">
-        {/* Header Section */}
-        <div className="text-center mb-10">
-          <h1 className="text-3xl md:text-4xl font-extrabold text-[#0D2137]">
-            UPCOMING EVENTS
-          </h1>
-          <p className="text-[#2E77AE] text-md md:text-lg font-medium mt-2">
-            Discover impactful experiences and engaging events happening soon.
-          </p>
-          <div className="mt-4 mx-auto w-24 md:w-40 border-b-4 border-[#FF8E2B]"></div>
-        </div>
-
-        {/* Event Cards Section */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          <EventCard />
-          <EventCard />
-          <EventCard />
-          <EventCard />
-        </div>
-
-        {/* View All Events Link */}
-        <div className="text-center mt-10">
-          <Link
-            href="/events"
-            className="inline-block bg-[#FF8E2B] text-white px-6 py-3 rounded-full font-semibold shadow-lg hover:bg-[#e57719] transition duration-300"
-          >
-            VIEW ALL EVENTS
-          </Link>
-        </div>
+      {/* Header Section */}
+      <div className="text-center mb-10">
+        <h1 className="text-3xl md:text-4xl font-extrabold text-[#0D2137]">
+          UPCOMING EVENTS
+        </h1>
+        <p className="text-[#2E77AE] text-md md:text-lg font-medium mt-2">
+          Discover impactful experiences and engaging events happening soon.
+        </p>
+        <div className="mt-4 mx-auto w-24 md:w-40 border-b-4 border-[#FF8E2B]"></div>
       </div>
+
+      {/* Swiper Slider Section */}
+      <Swiper
+        modules={[Navigation, Autoplay]}
+        spaceBetween={30}
+        navigation
+        autoplay={{ delay: 3000, disableOnInteraction: false }}
+        loop={true}
+        breakpoints={{
+          320: { slidesPerView: 1 },
+          640: { slidesPerView: 1 },
+          768: { slidesPerView: 2 },
+          1024: { slidesPerView: 3 },
+        }}
+        className="pb-10"
+      >
+        {[...Array(6)].map((_, index) => (
+          <SwiperSlide key={index}>
+            <EventCard />
+          </SwiperSlide>
+        ))}
+      </Swiper>
+
+      {/* Optional: View All Events */}
+      {/* <div className="text-center mt-10">
+        <Link
+          href="/events"
+          className="inline-block bg-[#FF8E2B] text-white px-6 py-3 rounded-full font-semibold shadow-lg hover:bg-[#e57719] transition duration-300"
+        >
+          VIEW ALL EVENTS
+        </Link>
+      </div> */}
+    </div>
 
 
       {/* Testimonials Section */}
