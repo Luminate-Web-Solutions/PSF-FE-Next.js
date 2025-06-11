@@ -1,26 +1,30 @@
-'use client';
+'use client'
 
 import React, { useState, useEffect } from 'react';
 import { Plus } from 'lucide-react';
-import axios from 'axios';
-import TeamCard from '../../components/members/TeamCard';
-import TeamForm from '../../components/members/TeamForm';
-import MemberForm from '../../components/members/MemberForm';
+import TeamCard from '../../components/team/TeamCard';
+import TeamForm from '../../components/team/TeamForm';
+import MemberForm from '../../components/team/MemberForm';
+import { 
+  getTeams, 
+  createTeam, 
+  updateTeam, 
+  deleteTeam,
+  createTeamMember,
+  updateTeamMember,
+  deleteTeamMember
+} from '../../services/teamService.js';
 
-const Members = () => {
+const TeamsPage = () => {
   const [teams, setTeams] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [currentTeamId, setCurrentTeamId] = useState(null);
   const [currentMember, setCurrentMember] = useState(null);
   const [isTeamModalOpen, setIsTeamModalOpen] = useState(false);
   const [isMemberModalOpen, setIsMemberModalOpen] = useState(false);
-  const [isMounted, setIsMounted] = useState(false);
   const [error, setError] = useState(null);
 
-  const BASEURL = 'http://localhost:4000';
-
   useEffect(() => {
-    setIsMounted(true);
     fetchTeams();
   }, []);
 
@@ -28,8 +32,8 @@ const Members = () => {
     setIsLoading(true);
     setError(null);
     try {
-      const response = await axios.get(`${BASEURL}/api/teams`);
-      setTeams(response.data);
+      const data = await getTeams();
+      setTeams(data);
     } catch (error) {
       console.error('Error fetching teams:', error);
       setError('Failed to load teams. Please check if the backend server is running.');
@@ -43,9 +47,9 @@ const Members = () => {
     setError(null);
     try {
       if (currentTeamId) {
-        await axios.put(`${BASEURL}/api/teams/${currentTeamId}`, formData);
+        await updateTeam(currentTeamId, formData);
       } else {
-        await axios.post(`${BASEURL}/api/teams`, formData);
+        await createTeam(formData);
       }
       await fetchTeams();
       setIsTeamModalOpen(false);
@@ -57,13 +61,13 @@ const Members = () => {
     }
   };
 
-  const deleteTeam = async (teamId) => {
+  const handleDeleteTeam = async (teamId) => {
     if (!window.confirm('Are you sure you want to delete this team and all its members?')) return;
     
     setIsLoading(true);
     setError(null);
     try {
-      await axios.delete(`${BASEURL}/api/teams/${teamId}`);
+      await deleteTeam(teamId);
       await fetchTeams();
     } catch (error) {
       console.error('Error deleting team:', error);
@@ -77,7 +81,6 @@ const Members = () => {
     setIsLoading(true);
     setError(null);
     
-    // Validate currentTeamId exists
     if (!currentTeamId) {
       setError('No team selected for adding member');
       setIsLoading(false);
@@ -85,25 +88,11 @@ const Members = () => {
     }
 
     try {
-      const formDataToSend = new FormData();
-      formDataToSend.append('name', formData.name);
-      formDataToSend.append('role', formData.role);
-      if (formData.image) formDataToSend.append('image', formData.image);
-
       if (currentMember?.id) {
-        await axios.put(
-          `${BASEURL}/api/teams/${currentTeamId}/members/${currentMember.id}`,
-          formDataToSend,
-          { headers: { 'Content-Type': 'multipart/form-data' } }
-        );
+        await updateTeamMember(currentTeamId, currentMember.id, formData);
       } else {
-        await axios.post(
-          `${BASEURL}/api/teams/${currentTeamId}/members`,
-          formDataToSend,
-          { headers: { 'Content-Type': 'multipart/form-data' } }
-        );
+        await createTeamMember(currentTeamId, formData);
       }
-      
       await fetchTeams();
       setIsMemberModalOpen(false);
     } catch (error) {
@@ -114,13 +103,13 @@ const Members = () => {
     }
   };
 
-  const deleteMember = async (teamId, memberId) => {
+  const handleDeleteMember = async (teamId, memberId) => {
     if (!window.confirm('Are you sure you want to delete this member?')) return;
     
     setIsLoading(true);
     setError(null);
     try {
-      await axios.delete(`${BASEURL}/api/teams/${teamId}/members/${memberId}`);
+      await deleteTeamMember(teamId, memberId);
       await fetchTeams();
     } catch (error) {
       console.error('Error deleting member:', error);
@@ -130,19 +119,11 @@ const Members = () => {
     }
   };
 
-  if (!isMounted) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
-      </div>
-    );
-  }
-
   return (
     <div className="p-4 md:p-6 max-w-7xl mx-auto">
       {/* Header */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-6 gap-4">
-        <h1 className="text-2xl md:text-3xl font-bold text-gray-800">Team Members</h1>
+        <h1 className="text-2xl md:text-3xl font-bold text-gray-800">Teams</h1>
         <button
           onClick={() => {
             setCurrentTeamId(null);
@@ -182,7 +163,7 @@ const Members = () => {
                 setCurrentTeamId(team.id);
                 setIsTeamModalOpen(true);
               }}
-              onDeleteTeam={() => deleteTeam(team.id)}
+              onDeleteTeam={() => handleDeleteTeam(team.id)}
               onAddMember={() => {
                 setCurrentTeamId(team.id);
                 setCurrentMember(null);
@@ -193,7 +174,7 @@ const Members = () => {
                 setCurrentMember(member);
                 setIsMemberModalOpen(true);
               }}
-              onDeleteMember={(memberId) => deleteMember(team.id, memberId)}
+              onDeleteMember={(memberId) => handleDeleteMember(team.id, memberId)}
               isLoading={isLoading}
             />
           ))}
@@ -229,4 +210,4 @@ const Members = () => {
   );
 };
 
-export default Members;
+export default TeamsPage;

@@ -21,6 +21,8 @@ const verticals = require("./models/verticals.js");
 const newsletter = require("./models/newsletter.js");
 const testimonials = require('./models/testimonials.js')
 const verticalGallery = require('./models/verticalGallery.js')
+const subscriberContact = require('./models/subscriberContact.js')
+const subscriberNews = require('./models/subscriberNews.js')
 
 //import routes
 const presidentRoutes = require('./routes/president.js') 
@@ -31,6 +33,7 @@ const newsletterRoutes = require('./routes/newsletter.js')
 const userRoutes = require('./routes/user.js')
 const testimoialsRoutes = require('./routes/testimonials.js');
 const galleryRoutes = require('./routes/gallery.js')
+const subscriberRoutes = require('./routes/subscriber.js')
 
 //routes
 app.use("/api/president", presidentRoutes);
@@ -41,6 +44,7 @@ app.use("/api/newsletter", newsletterRoutes);
 app.use("/api/admin", userRoutes )
 app.use("/api/gallery", galleryRoutes)
 app.use('/api/testimonials',testimoialsRoutes)
+app.use('/api/subscribe', subscriberRoutes)
 
 
 app.get("/", (req, res) => {
@@ -59,10 +63,10 @@ testConnection();
 
 async function syncDb(){
 
-  await sequelize.sync({ force: true });
+  await sequelize.sync({ alter: true });
   console.log('All models were synchronized successfully.');
 }
-// syncDb();
+syncDb();
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);

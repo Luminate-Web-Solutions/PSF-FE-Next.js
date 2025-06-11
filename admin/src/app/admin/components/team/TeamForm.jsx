@@ -1,20 +1,42 @@
+'use client'
+
 import React, { useState, useEffect } from 'react';
 import { X } from 'lucide-react';
 
 const TeamForm = ({ isOpen, onClose, onSubmit, team, isLoading }) => {
-  const [name, setName] = useState('');
+  const [formData, setFormData] = useState({
+    title: '',
+    subTitle: '',
+    description: ''
+  });
 
   useEffect(() => {
     if (team) {
-      setName(team.name);
+      setFormData({
+        title: team.title || '',
+        subTitle: team.subTitle || '',
+        description: team.description || ''
+      });
     } else {
-      setName('');
+      setFormData({
+        title: '',
+        subTitle: '',
+        description: ''
+      });
     }
   }, [team]);
 
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit({ name });
+    onSubmit(formData);
   };
 
   if (!isOpen) return null;
@@ -33,16 +55,45 @@ const TeamForm = ({ isOpen, onClose, onSubmit, team, isLoading }) => {
         
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
-            <label className="block text-gray-700 mb-2" htmlFor="name">
-              Team Name
+            <label className="block text-gray-700 mb-2" htmlFor="title">
+              Team Title*
             </label>
             <input
-              id="name"
+              id="title"
+              name="title"
               type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+              value={formData.title}
+              onChange={handleChange}
               className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               required
+            />
+          </div>
+
+          <div className="mb-4">
+            <label className="block text-gray-700 mb-2" htmlFor="subTitle">
+              Subtitle
+            </label>
+            <input
+              id="subTitle"
+              name="subTitle"
+              type="text"
+              value={formData.subTitle}
+              onChange={handleChange}
+              className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+
+          <div className="mb-4">
+            <label className="block text-gray-700 mb-2" htmlFor="description">
+              Description
+            </label>
+            <textarea
+              id="description"
+              name="description"
+              value={formData.description}
+              onChange={handleChange}
+              className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              rows="4"
             />
           </div>
           

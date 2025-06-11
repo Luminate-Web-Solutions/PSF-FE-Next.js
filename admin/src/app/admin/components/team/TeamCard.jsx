@@ -13,7 +13,10 @@ const TeamCard = ({
   return (
     <div className="mb-8 border rounded-lg overflow-hidden shadow-sm">
       <div className="bg-gray-50 p-4 flex justify-between items-center">
-        <h2 className="text-xl font-semibold text-gray-800">{team.name}</h2>
+        <div>
+          <h2 className="text-xl font-semibold text-gray-800">{team.title}</h2>
+          {team.subTitle && <p className="text-gray-600">{team.subTitle}</p>}
+        </div>
         <div className="flex gap-2">
           <button
             onClick={() => onEditTeam(team)}
@@ -38,6 +41,12 @@ const TeamCard = ({
           </button>
         </div>
       </div>
+      
+      {team.description && (
+        <div className="p-4 border-t">
+          <p className="text-gray-700">{team.description}</p>
+        </div>
+      )}
       
       <div className="p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {team.members?.map((member) => (
@@ -68,7 +77,7 @@ const TeamCard = ({
                 <Edit size={16} />
               </button>
               <button
-                onClick={() => onDeleteMember(member.id)}
+                onClick={() => onDeleteMember(team.id, member.id)}
                 className="text-gray-500 hover:text-red-500"
                 disabled={isLoading}
               >

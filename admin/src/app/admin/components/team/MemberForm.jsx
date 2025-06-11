@@ -1,20 +1,60 @@
+'use client'
+
 import React, { useState, useEffect } from 'react';
 import { X } from 'lucide-react';
 
-const TeamForm = ({ isOpen, onClose, onSubmit, team, isLoading }) => {
-  const [name, setName] = useState('');
+const MemberForm = ({ isOpen, onClose, onSubmit, member, isLoading }) => {
+  const [formData, setFormData] = useState({
+    name: '',
+    role: '',
+    image: null
+  });
+  const [preview, setPreview] = useState('');
 
   useEffect(() => {
-    if (team) {
-      setName(team.name);
+    if (member) {
+      setFormData({
+        name: member.name || '',
+        role: member.role || '',
+        image: null
+      });
+      setPreview(member.image || '');
     } else {
-      setName('');
+      setFormData({
+        name: '',
+        role: '',
+        image: null
+      });
+      setPreview('');
     }
-  }, [team]);
+  }, [member]);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setFormData(prev => ({
+        ...prev,
+        image: file
+      }));
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setPreview(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit({ name });
+    onSubmit(formData);
   };
 
   if (!isOpen) return null;
@@ -24,7 +64,7 @@ const TeamForm = ({ isOpen, onClose, onSubmit, team, isLoading }) => {
       <div className="bg-white rounded-lg p-6 w-full max-w-md">
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-xl font-semibold">
-            {team ? 'Edit Team' : 'Add New Team'}
+            {member ? 'Edit Member' : 'Add New Member'}
           </h2>
           <button onClick={onClose} className="text-gray-500 hover:text-gray-700">
             <X size={20} />
@@ -34,16 +74,50 @@ const TeamForm = ({ isOpen, onClose, onSubmit, team, isLoading }) => {
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label className="block text-gray-700 mb-2" htmlFor="name">
-              Team Name
+              Member Name*
             </label>
             <input
               id="name"
+              name="name"
               type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+              value={formData.name}
+              onChange={handleChange}
               className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
               required
             />
+          </div>
+
+          <div className="mb-4">
+            <label className="block text-gray-700 mb-2" htmlFor="role">
+              Role*
+            </label>
+            <input
+              id="role"
+              name="role"
+              type="text"
+              value={formData.role}
+              onChange={handleChange}
+              className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              required
+            />
+          </div>
+
+          <div className="mb-4">
+            <label className="block text-gray-700 mb-2" htmlFor="image">
+              Profile Image
+            </label>
+            <input
+              id="image"
+              type="file"
+              accept="image/*"
+              onChange={handleImageChange}
+              className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+            {preview && (
+              <div className="mt-2">
+                <img src={preview} alt="Preview" className="h-20 w-20 rounded-full object-cover" />
+              </div>
+            )}
           </div>
           
           <div className="flex justify-end gap-2">
@@ -69,4 +143,4 @@ const TeamForm = ({ isOpen, onClose, onSubmit, team, isLoading }) => {
   );
 };
 
-export default TeamForm;
+export default MemberForm;
