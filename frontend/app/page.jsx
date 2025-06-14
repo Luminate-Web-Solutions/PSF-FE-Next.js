@@ -1,6 +1,6 @@
 'use client';
 
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Autoplay } from 'swiper/modules';
@@ -11,6 +11,11 @@ import TestimonialCarousel from './components/TestimonialCarousel';
 import Link from 'next/link';
 import ImageCarousel from './components/ImageCarousel';
 import VerticalCard from './components/VerticalCard';
+import {
+  AcademicCapIcon,
+  LightBulbIcon,
+  UserGroupIcon,
+} from '@heroicons/react/24/outline';
 
 // export const metadata = {
 //   title: 'PSF - Home',
@@ -34,7 +39,9 @@ const App = () => {
 
     fetchEvents();
   }, []);
-  
+
+
+
   return (
     <>
       {/* Carousel Section */}
@@ -58,38 +65,79 @@ const App = () => {
       </div>
 
       {/* 5 Verticals Section */}
-      <div className="py-10 pr-10 pl-10">
-        <h1 className="text-2xl md:text-3xl font-bold text-center mb-10">5 VERTICALS OF PSF</h1>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 px-4 md:px-10">
-          {[
-            {
-              title: "Personal Wellbeing",
-              desc: "This comprehensive program covers different dimensions of wellness that include weekly activities.",
-              link: '/personalWellBeing',
-            },
-            {
-              title: "Professional Development",
-              desc: "Promote a culture of continuous learning & development and help professionals who are willing to learn and grow.",
-              link: '/professionalDev',
-            },
-            {
-              title: "Skills Academy",
-              desc: "We intend to close that gap by offering high-quality training in a variety of subjects through the PSF Skills Academy.",
-              link: '/skillsAcademy',
-            },
-            {
-              title: "Job & Career Guidance",
-              desc: "We groom job seekers and unemployed youth, through our flagship employment readiness program.",
-              link: '/jobCareer',
-            },
-            {
-              title: "Social Services",
-              desc: "We provide a platform for professionals where they can contribute to upliftment of society and nation building as whole.",
-              link: '/socialServices',
-            },
-          ].map((vertical, index) => (
-            <VerticalCard key={index} index={index} vertical={vertical} />
-          ))}
+      {/* 5 Verticals Section - Improved */}
+      <div className="py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-blue-50 to-white">
+        <div className="max-w-7xl mx-auto">
+          {/* Section Header */}
+          <div className="text-center mb-16">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400">5 Verticals</span> of PSF
+            </h1>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              Our comprehensive programs designed to empower individuals and communities
+            </p>
+          </div>
+
+          {/* Vertical Cards */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
+            {[
+              {
+                title: "Personal Wellbeing",
+                desc: "Comprehensive program covering different dimensions of wellness through weekly activities.",
+                link: '/personalWellBeing',
+              },
+              {
+                title: "Professional Development",
+                desc: "Promote continuous learning & development for professionals.",
+                link: '/professionalDev',
+              },
+              {
+                title: "Skills Academy",
+                desc: "High-quality training in various subjects through our academy.",
+                link: '/skillsAcademy',
+              },
+              {
+                title: "Job & Career Guidance",
+                desc: "Flagship employment readiness program for job seekers.",
+                link: '/jobCareer',
+              },
+              {
+                title: "Social Services",
+                desc: "Platform for professionals to contribute to society.",
+                link: '/socialServices',
+              },
+            ].map((vertical, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.3, delay: index * 0.1 }}
+                whileHover={{ y: -5 }}
+                className="h-full"
+              >
+                <div className="h-full bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100 overflow-hidden flex flex-col">
+                  {/* Card Content */}
+                  <div className="p-6 flex-1 flex flex-col">
+                    <div className="text-blue-600 text-2xl font-bold mb-2">{`0${index + 1}`}</div>
+                    <h3 className="text-xl font-bold text-gray-900 mb-3 leading-snug">{vertical.title}</h3>
+                    <p className="text-gray-600 text-sm md:text-base mb-6 flex-1">{vertical.desc}</p>
+                  </div>
+
+                  {/* Button */}
+                  <div className="px-6 pb-6">
+                    <Link href={vertical.link}>
+                      <span className="inline-flex items-center text-sm font-medium text-blue-600 hover:text-blue-800 transition-colors">
+                        Learn more
+                        <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 ml-1" viewBox="0 0 20 20" fill="currentColor">
+                          <path fillRule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clipRule="evenodd" />
+                        </svg>
+                      </span>
+                    </Link>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
 
@@ -145,22 +193,65 @@ const App = () => {
       </div>
 
 
-      {/* 3 Reasons Why PSF */}
-      <div className="flex flex-col text-center items-center lg:flex-row gap-10 px-4 md:px-10 py-10">
-        <h1 className="text-4xl lg:text-6xl font-bold text-blue-500 w-full lg:w-2/5 text-center lg:text-left pl-10 flex justify-center">
-          3 REASONS WHY PSF?
-        </h1>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full lg:w-3/5 pr-10 pl-10">
-          {[1, 2, 3].map((reason) => (
-            <div key={reason} className="bg-blue-50 p-6 rounded-xl shadow-lg">
-              <h1 className="text-xl font-bold text-center pb-2">Logo/Img</h1>
-              <p className="font-semibold text-center md:text-left">
-                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorem atque cum recusandae! Amet aperiam nisi sit dolorum totam numquam voluptatem.
+      {/* 3 Reasons Why PSF - Modernized */}
+      <div className="w-full bg-gradient-to-br from-blue-50 to-white py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-center">
+            {/* Header */}
+            <div className="lg:w-2/5">
+              <h1 className="text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-6">
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400">3 Reasons</span> <br />   Why PSF?
+              </h1>
+              <p className="text-lg text-gray-600">
+                Discover what makes PSF a unique platform for growth, impact, and connection.
               </p>
             </div>
-          ))}
 
+            {/* Reasons Grid */}
+            <div className="lg:w-3/5 grid grid-cols-1 md:grid-cols-2 gap-6">
+              {/* Reason 1 - Impact */}
+              <div className="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-blue-100 hover:border-blue-200 group">
+                <div className="flex items-center justify-center mb-6 w-16 h-16 rounded-full bg-blue-100 group-hover:bg-blue-200 transition-colors duration-300 mx-auto">
+                  <LightBulbIcon className="h-8 w-8 text-blue-600" />
+                </div>
+                <h2 className="text-2xl font-bold text-center text-gray-900 mb-4">Create Meaningful Impact</h2>
+                <p className="text-center text-gray-600 leading-relaxed">
+                  Join PSF to contribute meaningfully to society. Grow personally and professionally by empowering lives through education, skill development, and social upliftment.
+                </p>
+                <div className="mt-6 flex justify-center">
+                  <span className="inline-block h-1 w-16 bg-blue-500 rounded-full group-hover:w-24 transition-all duration-300"></span>
+                </div>
+              </div>
 
+              {/* Reason 2 - Learn */}
+              <div className="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-blue-100 hover:border-blue-200 group">
+                <div className="flex items-center justify-center mb-6 w-16 h-16 rounded-full bg-blue-100 group-hover:bg-blue-200 transition-colors duration-300 mx-auto">
+                  <AcademicCapIcon className="h-8 w-8 text-blue-600" />
+                </div>
+                <h2 className="text-2xl font-bold text-center text-gray-900 mb-4">Learn, Upskill and Grow</h2>
+                <p className="text-center text-gray-600 leading-relaxed">
+                  Through PSF's Skills Academy, access opportunities for skills-based education, upskilling, re-skilling, and job-readiness programs.
+                </p>
+                <div className="mt-6 flex justify-center">
+                  <span className="inline-block h-1 w-16 bg-blue-500 rounded-full group-hover:w-24 transition-all duration-300"></span>
+                </div>
+              </div>
+
+              {/* Reason 3 - Network */}
+              <div className="bg-white p-8 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 border border-blue-100 hover:border-blue-200 group md:col-span-2">
+                <div className="flex items-center justify-center mb-6 w-16 h-16 rounded-full bg-blue-100 group-hover:bg-blue-200 transition-colors duration-300 mx-auto">
+                  <UserGroupIcon className="h-8 w-8 text-blue-600" />
+                </div>
+                <h2 className="text-2xl font-bold text-center text-gray-900 mb-4">Network with Purpose-Driven People</h2>
+                <p className="text-center text-gray-600 leading-relaxed max-w-2xl mx-auto">
+                  Join a strong, values-based network of professionals, changemakers, and mentors. Collaborate with diverse individuals while working toward a common cause.
+                </p>
+                <div className="mt-6 flex justify-center">
+                  <span className="inline-block h-1 w-16 bg-blue-500 rounded-full group-hover:w-24 transition-all duration-300"></span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
 

@@ -66,7 +66,7 @@ async function syncDb(){
   await sequelize.sync({ alter: true });
   console.log('All models were synchronized successfully.');
 }
-syncDb();
+// syncDb();
 
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
